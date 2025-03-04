@@ -1,6 +1,8 @@
 1. Create a new React project by running `npm create vite@latest my-app`. Choose "React" and "JavaScript".
 
     You can replace `my-app` with any name of your choice, and you can run this command in any fitting place on your system (e.g., on your desktop). 
+
+    `cd` into the newly created project (`cd my-app`) and install the required dependencies via `npm install`.
     
     Start the development web server by running `npm run dev` inside the created project folder.
 
