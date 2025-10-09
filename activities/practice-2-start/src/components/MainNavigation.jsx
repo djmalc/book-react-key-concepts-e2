@@ -1,7 +1,19 @@
+import { useState } from 'react';
+
 import SideDrawer from './SideDrawer.jsx';
 import classes from './MainNavigation.module.css';
 
 function MainNavigation() {
+  const [drawerIsOpen, setDrawerIsOpen] = useState(false);
+
+  function handleOpenDrawer() {
+    setDrawerIsOpen(true);
+  }
+
+  function handleCloseDrawer() {
+    setDrawerIsOpen(false);
+  }
+
   return (
     <>
       <header className={classes.header}>
@@ -12,7 +24,7 @@ function MainNavigation() {
           <div />
         </button>
       </header>
-      {/* Should be shown conditionally: <SideDrawer />  */}
+      {drawerIsOpen && <SideDrawer onClose={handleCloseDrawer} />}
     </>
   );
 }
