@@ -20,7 +20,7 @@ function App() {
     loadPosts();
   }, []);
 
-  async function handleAddPost(newPost) {
+  function handleAddPost(newPost) {
     setLoadedPosts((prevPosts) => [newPost, ...prevPosts]);
   }
 
