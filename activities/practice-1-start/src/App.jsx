@@ -1,10 +1,28 @@
+import { useEffect, useState } from 'react';
+
 import BlogPosts from './components/BlogPosts.jsx';
 import NewPost from './components/NewPost.jsx';
 import blogLogoImg from './assets/blog-logo.jpg';
 
 function App() {
-  // Todo: Fetch blog posts from https://jsonplaceholder.typicode.com/posts (see documentation on https://jsonplaceholder.typicode.com/guide/)
-  // Pass fetched posts to <BlogPost /> via props & output the posts in that component
+  const [loadedPosts, setLoadedPosts] = useState([]);
+
+  useEffect(function () {
+    async function loadPosts() {
+      const response = await fetch(
+         'https://jsonplaceholder.typicode.com/posts'
+      );
+
+      const blogPosts = await response.json();
+      setLoadedPosts(blogPosts);
+    }
+
+    loadPosts();
+  }, []);
+
+  async function handleAddPost(newPost) {
+    setLoadedPosts((prevPosts) => [newPost, ...prevPosts]);
+  }
 
   return (
     <>
@@ -14,8 +32,8 @@ function App() {
           My <em>Effectful</em> Blog
         </h1>
       </header>
-      <NewPost />
-      <BlogPosts />
+      <NewPost onAddPost={handleAddPost} />
+      <BlogPosts posts={loadedPosts} />
     </>
   );
 }
